@@ -66,7 +66,18 @@ the parameter name in curly braces.
 This example logs the following events
 
 #+BEGIN_SRC text
-
+  INFO:root:a:From a 1...
+  INFO:root:a:From a 1...done
+  INFO:root:b:From b 3...
+  INFO:root:b:From b 3...done (returning 1)
+  INFO:root:b:From b 4...
+  INFO:root:b:From b 4...done (returning 2)
+  INFO:root:a:From a 2...
+  INFO:root:a:From a 2...done
+  INFO:root:c:From c 4...
+  INFO:root:b:From b 4...
+  INFO:root:b:From b 4...done (returning 2)
+  INFO:root:c:From c 4...done (returning -2) 
 #+END_SRC
 
 ** License
