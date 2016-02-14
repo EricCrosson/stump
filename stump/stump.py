@@ -161,9 +161,9 @@ def _stump(f, *args, **kwargs):
             report = '{}:KeyError in decorator usage'.format(f.__name__)
 
         level = kwargs.get('log', logging.INFO)
-	post = kwargs.get('postfix_only', False)
-	pre = kwargs.get('prefix_only', False)
-	print_return = kwargs.get('print_return', False)
+        post = kwargs.get('postfix_only', False)
+        pre = kwargs.get('prefix_only', False)
+        print_return = kwargs.get('print_return', False)
 
         if not post: LOGGER.log(level, '%s...', report)
         try:
