@@ -1,0 +1,5 @@
+* Stump
+
+** TODO describe name choice
+** TODO add tests
+** TODO setup standard readme
