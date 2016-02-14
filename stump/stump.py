@@ -49,7 +49,7 @@ def ret(f, *args, **kwargs):
 
 @parametrized
 def pre(f, *args, **kwargs):
-    """Automatically log progress on function entry. Default logging value: 
+    """Automatically log progress on function entry. Default logging value:
     info.
 
     *Logging with values contained in the parameters of the decorated function*
@@ -75,7 +75,7 @@ def pre(f, *args, **kwargs):
 
 @parametrized
 def post(f, *args, **kwargs):
-    """Automatically log progress on function exit. Default logging value: 
+    """Automatically log progress on function exit. Default logging value:
     info.
 
     *Logging with values contained in the parameters of the decorated function*
@@ -149,6 +149,7 @@ def _stump(f, *args, **kwargs):
 
     """
     global LOGGER
+
     def aux(*xs, **kws):
         f_kws = kws.copy()
         f_kws.update(dict(zip(inspect.getfullargspec(f).args, xs)))
@@ -162,7 +163,7 @@ def _stump(f, *args, **kwargs):
         # prepare locals for later uses in string interpolation
         fn = f.__name__
         timestr = '' if not print_time else '%s:' % \
-                      time.strftime("%Y-%m-%d %H:%M")
+                  time.strftime("%Y-%m-%d %H:%M")
 
         # get message
         # FIXME: pass message in directly, *args will always be length 1
@@ -179,8 +180,8 @@ def _stump(f, *args, **kwargs):
             report = '{fn}:{timestr}{error}'.\
                      format(**locals(), error='KeyError in decorator usage')
 
-
-        if not post: LOGGER.log(level, '%s...', report)
+        if not post:
+            LOGGER.log(level, '%s...', report)
         try:
             ret = f(*xs, **kws)
         except Exception as e:
