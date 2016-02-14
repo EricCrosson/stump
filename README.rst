@@ -1,7 +1,8 @@
 Stump
+=====
+
 .. image:: https://travis-ci.org/EricCrosson/stump.svg?branch=master
    :target: https://travis-ci.org/EricCrosson/stump
-=====
 
 -  `What is stump?`_
 -  `Installation`_
