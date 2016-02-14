@@ -38,7 +38,7 @@ Usage
 
 Insert the stump library and configure the stump logger
 
-::
+.. code-block:: python
 
       #!/usr/bin/env python
       import stump
@@ -55,7 +55,7 @@ And decorate some methods. Stump allows you to interpolate a string
 representation of the parameter values to decorated methods by simply
 wrapping the parameter name in curly braces.
 
-::
+.. code-block:: python
 
       import random
       @stump.ret('"Calculating" boost for car {car}')
