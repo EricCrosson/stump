@@ -7,4 +7,6 @@ python:
   - "3.5"
   - "nightly"
 
-script: stump/tests/test_stump.py
+script:
+  - python setup.py develop
+  - stump/tests/test_stump.py
