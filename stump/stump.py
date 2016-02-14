@@ -153,7 +153,7 @@ def _stump(f, *args, **kwargs):
         try:
             message = list(args).pop(0)
         except:
-            LOGGER.log('Must include message in decorator')
+            LOGGER.error('Must include message in decorator')
         try:
             report = '%s:%s' % (f.__name__, message.format(**f_kws))
         except:
