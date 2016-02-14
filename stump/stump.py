@@ -2,6 +2,7 @@
 # Written by Eric Crosson
 # 2016-02-13 <3
 
+import time
 import inspect
 import logging
 
@@ -131,6 +132,8 @@ def _stump(f, *args, **kwargs):
     - log :: integer
       - Specifies a custom level of logging to pass to the active logger.
       - Default: INFO
+    - print_time :: bool
+      - Include timestamp in message
     - print_return :: bool
       - include the return value in the functions exit message
     - postfix_only :: bool
@@ -149,20 +152,33 @@ def _stump(f, *args, **kwargs):
     def aux(*xs, **kws):
         f_kws = kws.copy()
         f_kws.update(dict(zip(inspect.getfullargspec(f).args, xs)))
-        # FIXME: pass message in directly, *args will always be length 1
-        try:
-            message = list(args).pop(0)
-        except:
-            message = f.__name__
-        try:
-            report = '{}:{}'.format(f.__name__, message.format(**f_kws))
-        except KeyError:
-            report = '{}:KeyError in decorator usage'.format(f.__name__)
 
         level = kwargs.get('log', logging.INFO)
         post = kwargs.get('postfix_only', False)
         pre = kwargs.get('prefix_only', False)
         print_return = kwargs.get('print_return', False)
+        print_time = kwargs.get('print_time', False)
+
+        # prepare locals for later uses in string interpolation
+        fn = f.__name__
+        timestr = '' if not print_time else '%s:' % \
+                      time.strftime("%Y-%m-%d %H:%M")
+
+        # get message
+        # FIXME: pass message in directly, *args will always be length 1
+        try:
+            message = list(args).pop(0)
+        except IndexError:
+            message = fn
+
+        # format message
+        try:
+            report = '{fn}:{timestr}{arg}'.format(**locals(),
+                                                  arg=message.format(**f_kws))
+        except KeyError:
+            report = '{fn}:{timestr}{error}'.\
+                     format(**locals(), error='KeyError in decorator usage')
+
 
         if not post: LOGGER.log(level, '%s...', report)
         try:
