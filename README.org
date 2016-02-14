@@ -28,56 +28,63 @@ The publication of this process is still in the works. Check back shortly.
 
 ** Usage
 
-Include the stump library
+Insert the stump library and configure the stump logger
 
-#+BEGIN_SRC python
+#+BEGIN_SRC python :results output silent :tangle readme.py
+  #!/usr/bin/env python
   import stump
-#+END_SRC
 
-Configure the stump logger
-
-#+BEGIN_SRC python
+  # configure a logger for stump
+  import sys
   import logging
-
   logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
   logger = logging.getLogger()
 
   stump.configure(logger)
 #+END_SRC
 
+#+RESULTS:
+
 And decorate some methods. Stump allows you to interpolate a string
 representation of the parameter values to decorated methods by simply wrapping
 the parameter name in curly braces.
 
-#+BEGIN_SRC python
-  @stump.put('From a {a}')
-  def a(a):
-      return a+1
+#+BEGIN_SRC python :results output silent :tangle readme.py
+  import random
+  @stump.ret('"Calculating" boost for car {car}')
+  def car_boost(car):
+      return random.random() * 100
 
-  @stump.ret('From b {b}')
-  def b(b):
-      return b-2
+  @stump.pre()
+  def ready(): pass
+  @stump.pre()
+  def set(): pass
+  @stump.post()
+  def go(): pass
 
-  @stump.ret('From c {c}')
-  def c(c):
-      return b(c)-c
+  @stump.ret('Racing {car}')
+  def race(car):
+      luck = car_boost(car)
+      return random.randint(1, round(luck))
+
+  ready()
+  set()
+  go()
+  race('wacky')
 #+END_SRC
 
 This example logs the following events
 
 #+BEGIN_SRC text
-  INFO:root:a:From a 1...
-  INFO:root:a:From a 1...done
-  INFO:root:b:From b 3...
-  INFO:root:b:From b 3...done (returning 1)
-  INFO:root:b:From b 4...
-  INFO:root:b:From b 4...done (returning 2)
-  INFO:root:a:From a 2...
-  INFO:root:a:From a 2...done
-  INFO:root:c:From c 4...
-  INFO:root:b:From b 4...
-  INFO:root:b:From b 4...done (returning 2)
-  INFO:root:c:From c 4...done (returning -2) 
+  INFO:root:ready:ready...
+  INFO:root:set:set...
+  INFO:root:go:go...done
+  INFO:root:race:Racing wacky...
+  INFO:root:car_boost:"Calculating" boost for car wacky...
+  INFO:root:car_boost:"Calculating" boost for car wacky...done (returning 11.857944115557483)
+  INFO:root:race:Racing wacky...done (returning 2)
 #+END_SRC
 
 ** License
+
+This code is released under the MIT license.
