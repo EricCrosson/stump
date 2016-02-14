@@ -153,24 +153,27 @@ def _stump(f, *args, **kwargs):
         try:
             message = list(args).pop(0)
         except:
-            LOGGER.error('Must include message in decorator')
+            LOGGER.error('Must include message in decorator to {}'.\
+                        format(f.__name__))
         try:
-            report = '%s:%s' % (f.__name__, message.format(**f_kws))
-        except:
-            # TODO; catch specific exception
-            report = '{fn}'.format(fn=f.__name__)
-        level = kwargs.get('log', logging.INFO)
+            report = '{}:{}'.format(f.__name__, message.format(**f_kws))
+        except KeyError:
+            report = '{}:KeyError in decorator usage'.format(f.__name__)
 
-        if not kwargs.get('postfix_only', False):
-            LOGGER.log(level, '%s...', report)
+        level = kwargs.get('log', logging.INFO)
+	post = kwargs.get('postfix_only', False)
+	pre = kwargs.get('prefix_only', False)
+	print_return = kwargs.get('print_return', False)
+
+        if not post: LOGGER.log(level, '%s...', report)
         try:
             ret = f(*xs, **kws)
         except Exception as e:
             LOGGER.log(level, '%s...threw exception %s with message %s',
                        report, type(e).__name__, str(e))
             raise
-        if not kwargs.get('prefix_only', False):
-            if kwargs.get('print_return', False):
+        if not pre:
+            if print_return:
                 LOGGER.log(level, '%s...done (returning %s)', report, ret)
             else:
                 LOGGER.log(level, '%s...done', report)
