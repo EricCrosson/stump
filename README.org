@@ -1,5 +1,72 @@
-* Stump
+* Stump                                                                 :toc:
+   - [[#what-is-stump][What is stump?]]
+   - [[#installation][Installation]]
+   - [[#usage][Usage]]
+   - [[#license][License]]
 
-** TODO describe name choice
-** TODO add tests
-** TODO setup standard readme
+** What is stump?
+
+*Stump:*
+
+/n./ the lower end of a tree or plant left after the main part is removed
+
+*Log*
+
+/n./ a portion or length of the trunk or of a larg limb of a felled tree
+
+Stump is a *logging utility for Python* that uses the [[https://docs.python.org/3/library/logging.html][logging module]] under the
+covers. However, a stump is a different part of a tree than a log and as such
+should be utilized differently. Stump offers various [[https://www.python.org/dev/peps/pep-0318/][method decorators]] that
+really cover all the bases of logging for debugging. Stump's method decorators
+are flexible and concise, act as additional documentation, don't clutter the
+main code of the method body and accept a natural format string that is easy to
+form and read.
+
+** Installation
+
+The publication of this process is still in the works. Check back shortly.
+
+** Usage
+
+Include the stump library
+
+#+BEGIN_SRC python
+  import stump
+#+END_SRC
+
+Configure the stump logger
+
+#+BEGIN_SRC python
+  import logging
+
+  logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
+  logger = logging.getLogger()
+
+  stump.configure(logger)
+#+END_SRC
+
+And decorate some methods. Stump allows you to interpolate a string
+representation of the parameter values to decorated methods by simply wrapping
+the parameter name in curly braces.
+
+#+BEGIN_SRC python
+  @stump.put('From a {a}')
+  def a(a):
+      return a+1
+
+  @stump.ret('From b {b}')
+  def b(b):
+      return b-2
+
+  @stump.ret('From c {c}')
+  def c(c):
+      return b(c)-c
+#+END_SRC
+
+This example logs the following events
+
+#+BEGIN_SRC text
+
+#+END_SRC
+
+** License
