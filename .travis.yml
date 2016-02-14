@@ -6,10 +6,6 @@ python:
   - "3.5"
   - "nightly"
 
-matrix:
-  exclude:
-    - python: 3.1
-
 script:
   - python setup.py develop
   - stump/tests/test_stump.py
