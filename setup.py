@@ -15,4 +15,5 @@ setup(name='stump',
       author_email='eric.s.crosson@utexas.edu',
       license='GPLv3',
       packages=['stump'],
+      include_package_data=True,
       zip_safe=False)
