@@ -5,7 +5,7 @@ def readme():
         return f.read()
 
 setup(name='stump',
-      version='0.11',
+      version='0.12',
       description='Logs program flow with decorators',
       long_description=readme(),
       url='http://github.com/EricCrosson/stump',
