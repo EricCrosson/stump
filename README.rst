@@ -3,6 +3,7 @@ Stump
 
 .. image:: https://travis-ci.org/EricCrosson/stump.svg?branch=master
    :target: https://travis-ci.org/EricCrosson/stump
+   :alt: Travis-CI Build Status
 
 -  `What is stump?`_
 -  `Installation`_
