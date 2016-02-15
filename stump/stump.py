@@ -187,8 +187,14 @@ def _stump(f, *args, **kwargs):
         try:
             ret = f(*xs, **kws)
         except Exception as e:
-            LOGGER.log(level, '%s...threw exception %s with message %s',
-                       report, type(e).__name__, str(e))
+            try:
+                with_message = ' with message %s' % str(e)
+                if str(e) == '':
+                    raise Exception() # use default value
+            except:
+                with_message = ''
+            LOGGER.log(level, '%s...threw exception %s%s',
+                       report, type(e).__name__, with_message)
             raise
         if not pre:
             if print_return:
