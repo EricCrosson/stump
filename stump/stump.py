@@ -232,4 +232,4 @@ def _stump(f, *args, **kwargs):
             else:
                 LOGGER.log(level, '%s...done', report)
         return ret
-    return aux 
+    return aux
