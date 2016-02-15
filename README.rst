@@ -180,6 +180,6 @@ This code is released under the MIT license.
 .. _Usage: #usage
 .. _License: #license
 .. _Examples: #examples
-.. _logging module: https://docs.python.org/3/library/logging.html
+.. _standard logging module: https://docs.python.org/3/library/logging.html
 .. _method decorators: https://www.python.org/dev/peps/pep-0318/
 .. _pip: https://pypi.python.org/pypi/pip
