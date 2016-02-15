@@ -10,30 +10,30 @@ Stump
 -  `License`_
 
 What is stump?
-   --------------
+--------------
 
-   **Stump:**
+**Stump:**
 
-   *n.* the lower end of a tree or plant left after the main part is
-   removed
+*n.* the lower end of a tree or plant left after the main part is
+removed
 
-   **Log**
+**Log**
 
-   *n.* a portion or length of the trunk or of a large limb of a felled
-   tree
+*n.* a portion or length of the trunk or of a large limb of a felled
+tree
 
-   Stump is a **logging utility for Python** that uses the `logging
-   module`_ under the covers. However, a stump is a different part of a
-   tree than a log and as such should be utilized differently. Stump offers
-   various `method decorators`_ that really cover all the bases of logging
-   for debugging. Stump’s method decorators are flexible and concise, act
-   as additional documentation, don’t clutter the main code of the method
-   body and accept a natural format string that is easy to form and read.
+Stump is a **logging utility for Python** that uses the `logging
+module`_ under the covers. However, a stump is a different part of a
+tree than a log and as such should be utilized differently. Stump offers
+various `method decorators`_ that really cover all the bases of logging
+for debugging. Stump’s method decorators are flexible and concise, act
+as additional documentation, don’t clutter the main code of the method
+body and accept a natural format string that is easy to form and read.
 
-   Installation
-   ------------
+Installation
+------------
 
-   Install from `pip`_
+Install from `pip`_
 
 .. code-block:: bash
 
