@@ -18,7 +18,7 @@ What is stump?
 *n.* the lower end of a tree or plant left after the main part is
 removed
 
-**Log**
+**Log:**
 
 *n.* a portion or length of the trunk or of a large limb of a felled
 tree
