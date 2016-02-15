@@ -8,7 +8,7 @@ Stump
 -  `What is stump?`_
 -  `Installation`_
 -  `Usage`_
-  + `Examples`_
++  `Examples`_
 -  `License`_
 
 .. role:: python(code)
