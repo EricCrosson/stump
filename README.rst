@@ -6,9 +6,13 @@ Stump
    :alt: Travis-CI Build Status
 
 -  `What is stump?`_
+
 -  `Installation`_
+
 -  `Usage`_
+
    -  `Examples`_
+
 -  `License`_
 
 .. role:: python(code)
