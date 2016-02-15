@@ -100,6 +100,32 @@ def post(f, *args, **kwargs):
 
 
 @parametrized
+def date(f, *args, **kwargs):
+    """Automatically log progress on function entry and exit with date- and
+    time- stamp. Default logging value: info.
+
+    *Logging with values contained in the parameters of the decorated function*
+    Message (args[0]) may be a string to be formatted with parameters passed to
+    the decorated function. Each '{varname}' will be replaced by the value of
+    the parameter of the same name.
+
+    *Keyword parameters*
+    - log :: integer
+      - Specifies a custom level of logging to pass to the active logger.
+      - Default: INFO
+
+    *Exceptions:*
+    - IndexError and ValueError
+      - will be returned if *args contains a string that does not correspond to
+        a parameter name of the decorated function, or if there are more '{}'s
+        than there are *args.
+
+    """
+    kwargs.update({'print_time': True})
+    return _stump(f, *args, **kwargs)
+
+
+@parametrized
 def put(f, *args, **kwargs):
     """Automatically log progress on function entry and exit. Default logging
     value: info.
@@ -122,6 +148,11 @@ def put(f, *args, **kwargs):
 
     """
     return _stump(f, *args, **kwargs)
+
+
+def _timestr():
+    """Return formatted time string."""
+    return '%s' % time.strftime("%Y-%m-%d %H:%M:%S")
 
 
 def _stump(f, *args, **kwargs):
@@ -162,7 +193,7 @@ def _stump(f, *args, **kwargs):
 
         # prepare locals for later uses in string interpolation
         fn = f.__name__
-        timestr = '%s:' % time.strftime("%Y-%m-%d %H:%M") if print_time else ''
+        timestr = '%s:' % _timestr() if print_time else ''
 
         # get message
         # FIXME: pass message in directly, *args will always be length 1
@@ -192,8 +223,8 @@ def _stump(f, *args, **kwargs):
                     raise Exception()  # use default value
             except:
                 with_message = ''
-            LOGGER.log(level, '%s...threw exception %s%s', report,
-                       type(e).__name__, with_message)
+            LOGGER.log(level, '%s...threw exception %s%s',
+                       report, type(e).__name__, with_message)
             raise
         if not pre:
             if print_return:
@@ -201,4 +232,4 @@ def _stump(f, *args, **kwargs):
             else:
                 LOGGER.log(level, '%s...done', report)
         return ret
-    return aux
+    return aux 

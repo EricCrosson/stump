@@ -131,30 +131,33 @@ wrapping the parameter name in curly braces.
 
 .. code-block:: python
 
-      import random
       @stump.ret('"Calculating" boost for car {car}')
       def car_boost(car):
+          try:
+              use_nitrous()
+          except:
+              pass
           return random.random() * 100
 
-      class NoNitrousException(Exception): pass
       @stump.post('Using nitrous')
       def use_nitrous():
           raise NoNitrousException('You never installed nitrous!')
 
       @stump.pre()
-      def ready(): pass
-      @stump.pre()
-      def set(): pass
-      @stump.post()
-      def go(): pass
+      def ready():
+          light = 'red'
 
-      @stump.ret('Racing {car}')
+      @stump.pre()
+      def set():
+          light = 'yellow'
+
+      @stump.post()
+      def go():
+          light = 'green'
+
+      @stump.date('Racing {car}', print_return=True)
       def race(car):
           luck = car_boost(car)
-          try:
-              use_nitrous()
-          except:
-              pass
           return random.randint(1, round(luck))
 
       ready()
@@ -169,11 +172,12 @@ This example logs the following events
       INFO:root:ready...
       INFO:root:set...
       INFO:root:go...done
-      INFO:root:race:Racing wacky...
+      INFO:root:race:2016-02-14 23:33:37:Racing wacky...
       INFO:root:car_boost:"Calculating" boost for car wacky...
-      INFO:root:car_boost:"Calculating" boost for car wacky...done (returning 81.53077859037138)
-      INFO:root:use_nitrous:Using nitrous...threw exception NoNitrousException with message You never installed nitrous!
-      INFO:root:race:Racing wacky...done (returning 2)
+      INFO:root:use_nitrous:Using nitrous...
+      INFO:root:use_nitrous:Using nitrous...threw exception NoNitrousException
+      INFO:root:car_boost:"Calculating" boost for car wacky...done (returning 56.138089977332776)
+      INFO:root:race:2016-02-14 23:33:37:Racing wacky...done (returning 2)
 
 License
 -------
