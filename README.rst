@@ -5,11 +5,8 @@ Stump
    :target: https://travis-ci.org/EricCrosson/stump
    :alt: Travis-CI Build Status
 
--  `What is stump?`_
--  `Installation`_
--  `Usage`_
-+  `Examples`_
--  `License`_
+.. toctree::
+   :maxdepth: 2
 
 .. role:: python(code)
    :language: python
