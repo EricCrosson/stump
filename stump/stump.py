@@ -162,8 +162,7 @@ def _stump(f, *args, **kwargs):
 
         # prepare locals for later uses in string interpolation
         fn = f.__name__
-        timestr = '' if not print_time else '%s:' % \
-                  time.strftime("%Y-%m-%d %H:%M")
+        timestr = '%s:' % time.strftime("%Y-%m-%d %H:%M") if print_time else ''
 
         # get message
         # FIXME: pass message in directly, *args will always be length 1
