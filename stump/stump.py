@@ -169,15 +169,17 @@ def _stump(f, *args, **kwargs):
         # FIXME: pass message in directly, *args will always be length 1
         try:
             message = list(args).pop(0)
+            timestr = ':' + timestr
         except IndexError:
             message = fn
+            fn = ''
 
         # format message
         try:
-            report = '{fn}:{timestr}{arg}'.format(**locals(),
+            report = '{fn}{timestr}{arg}'.format(**locals(),
                                                   arg=message.format(**f_kws))
         except KeyError:
-            report = '{fn}:{timestr}{error}'.\
+            report = '{fn}{timestr}{error}'.\
                      format(**locals(), error='KeyError in decorator usage')
 
         if not post:
