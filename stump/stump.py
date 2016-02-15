@@ -193,8 +193,8 @@ def _stump(f, *args, **kwargs):
                     raise Exception() # use default value
             except:
                 with_message = ''
-            LOGGER.log(level, '%s...threw exception %s%s',
-                       report, type(e).__name__, with_message)
+            LOGGER.log(level, '%s...threw exception %s%s', report,
+                       type(e).__name__, with_message)
             raise
         if not pre:
             if print_return:
