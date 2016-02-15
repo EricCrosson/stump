@@ -80,8 +80,8 @@ If invoked by :python:`accelerate(42, 9.8)` the logs generated would be
 
 .. code-block:: text
 
-       INFO:root:accelerate:Object is 42 lbs with 9.8 m/s^2 acceleration...
-       INFO:root:accelerate:Object is 42 lbs with 9.8 m/s^2 acceleration...done
+       INFO:accelerate:Object is 42 lbs with 9.8 m/s^2 acceleration...
+       INFO:accelerate:Object is 42 lbs with 9.8 m/s^2 acceleration...done
 
 The standard decorator, :python:`stump.put`, prints a message upon entering and
 exiting a method. The below table describes the public api exposed by :python:`stump`.
