@@ -131,17 +131,16 @@ wrapping the parameter name in curly braces.
 
 .. code-block:: python
 
+      @stump.post('Using nitrous')
+      def use_nitrous():
+          raise NoNitrousException('You never installed nitrous!')
+
       @stump.ret('"Calculating" boost for car {car}')
       def car_boost(car):
           try:
               use_nitrous()
           except:
-              pass
-          return random.random() * 100
-
-      @stump.post('Using nitrous')
-      def use_nitrous():
-          raise NoNitrousException('You never installed nitrous!')
+              return random.random() * 100
 
       @stump.pre()
       def ready():
