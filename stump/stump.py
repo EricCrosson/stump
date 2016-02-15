@@ -177,7 +177,7 @@ def _stump(f, *args, **kwargs):
         # format message
         try:
             report = '{fn}{timestr}{arg}'.format(**locals(),
-                                                  arg=message.format(**f_kws))
+                                                 arg=message.format(**f_kws))
         except KeyError:
             report = '{fn}{timestr}{error}'.\
                      format(**locals(), error='KeyError in decorator usage')
@@ -190,7 +190,7 @@ def _stump(f, *args, **kwargs):
             try:
                 with_message = ' with message %s' % str(e)
                 if str(e) == '':
-                    raise Exception() # use default value
+                    raise Exception()  # use default value
             except:
                 with_message = ''
             LOGGER.log(level, '%s...threw exception %s%s', report,
