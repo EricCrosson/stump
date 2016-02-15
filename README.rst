@@ -11,6 +11,8 @@ Stump
 
 -  `Usage`_
 
+   -  `API`_
+
    -  `Examples`_
 
 -  `License`_
@@ -82,6 +84,9 @@ If invoked by :python:`accelerate(42, 9.8)` the logs generated would be
 
        INFO:accelerate:Object is 42 lbs with 9.8 m/s^2 acceleration...
        INFO:accelerate:Object is 42 lbs with 9.8 m/s^2 acceleration...done
+
+API
+~~~
 
 The standard decorator, :python:`stump.put`, prints a message upon entering and
 exiting a method. The below table describes the public api exposed by :python:`stump`.
@@ -179,6 +184,7 @@ This code is released under the MIT license.
 .. _Installation: #installation
 .. _Usage: #usage
 .. _License: #license
+.. _API: #API
 .. _Examples: #examples
 .. _standard logging module: https://docs.python.org/3/library/logging.html
 .. _method decorators: https://www.python.org/dev/peps/pep-0318/
