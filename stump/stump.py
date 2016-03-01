@@ -2,6 +2,7 @@
 # Written by Eric Crosson
 # 2016-02-13 <3
 
+import sys
 import time
 import inspect
 import logging
@@ -15,10 +16,16 @@ def parametrized(dec):
     return layer
 
 
-def configure(logger):
-    """Pass stump a logger to use."""
+def configure(logger=None):
+    """Pass stump a logger to use. If no logger is supplied, a basic logger
+    of level INFO will print to stdout.
+
+    """
     global LOGGER
-    LOGGER = logger
+    if logger is None:
+        LOGGER = logging.basicConfig(stream=sys.stdout, level=logging.INFO)
+    else:
+        LOGGER = logger
 
 
 @parametrized
