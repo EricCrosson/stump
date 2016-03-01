@@ -564,7 +564,6 @@ def _stump(f, *args, **kwargs):
         timestr = '%s:' % _timestr() if print_time else ''
 
         # get message
-        # FIXME: pass message in directly, *args will always be length 1
         try:
             message = list(args).pop(0)
             timestr = ':' + timestr
