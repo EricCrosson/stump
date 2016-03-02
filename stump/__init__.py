@@ -1,1 +1,1 @@
-from stump.stump import *
+from stump import *
