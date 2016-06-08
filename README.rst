@@ -4,10 +4,10 @@ Stump
 .. image:: https://travis-ci.org/EricCrosson/stump.svg?branch=master
    :target: https://travis-ci.org/EricCrosson/stump
    :alt: Travis-CI Build Status
-.. image: https://img.shields.io/pypi/v/stump.svg
+.. image:: https://img.shields.io/pypi/v/stump.svg
    :target: https://github.com/EricCrosson/stump
    :alt: Current Version
-.. image: https://img.shields.io/pypi/v/stump.svg
+.. image:: https://img.shields.io/pypi/v/stump.svg
    :target: https://github.com/EricCrosson/stump
    :alt: License
 
