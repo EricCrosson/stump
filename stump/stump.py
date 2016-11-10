@@ -551,7 +551,7 @@ def _stump(f, *args, **kwargs):
 
     def aux(*xs, **kws):
         f_kws = kws.copy()
-        f_kws.update(dict(zip(inspect.getfullargspec(f).args, xs)))
+        f_kws.update(dict(zip(inspect.getargspec(f).args, xs)))
 
         level = kwargs.get('log', logging.INFO)
         post = kwargs.get('postfix_only', False)
@@ -573,11 +573,13 @@ def _stump(f, *args, **kwargs):
 
         # format message
         try:
-            report = '{fn}{timestr}{arg}'.format(**locals(),
-                                                 arg=message.format(**f_kws))
+            # esc removed double star from locals
+            report = '{fn}{timestr}'.format(**locals())
+            report += message.format(**f_kws)
         except KeyError:
-            report = '{fn}{timestr}{error}'.\
-                     format(**locals(), error='KeyError in decorator usage')
+            # esc removed double star from locals
+            report = '{fn}{timestr}'.format(**locals())
+            report += 'KeyError in decorator usage'
 
         if not post:
             LOGGER.log(level, '%s...', report)
